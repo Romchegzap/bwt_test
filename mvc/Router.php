@@ -20,44 +20,16 @@ class Router
     public $params;
 
     /**
-     * Router constructor. Fills this->routes and this->params.
+     * Router constructor. Fills this->routes.
      */
     public function __construct()
     {
         $routes = require 'routes.php';
-
         foreach ($routes as $url => $params) {
             $this->addRoute($url, $params);
         }
     }
 
-    /**
-     * Finding controller due to routes and creating it. If there is no controller or method then throw errorpage.
-     *
-     * @object
-     */
-    public function run(){
-        if ($this->isMatch()) {
-            $controller = "app\controllers\\" . ucfirst($this->params['controller']) . 'Controller';
-            var_dump($controller);
-            dumper($this->params);
-            if (class_exists($controller)) {
-                $method = $this->params['action'];
-                if (method_exists($controller, $method)) {
-                    $controller= new $controller($this->params);
-                    $controller->$method();
-                } else {
-                    View::renderErrorPage(404);
-                }
-            } else {
-                View::renderErrorPage(404);
-            }
-        } else {
-            View::renderErrorPage(404);
-        }
-
-
-    }
     /**
      * Transforms url into a string, accepted by 'preg_match()'
      * and save it in '$this->routes'
@@ -69,7 +41,37 @@ class Router
     }
 
     /**
+     * Finding controller due to routes and creating it. If there is no controller or method then throw errorpage.
+     *
+     * @object
+     */
+    public function run(){
+        if ($this->isMatch()) {
+            $controller = "app\controllers\\" . ucfirst($this->params['controller']) . 'Controller';
+            if (class_exists($controller)) {
+                $controller= new $controller($this->params);
+
+                // Choose methods with Post (ex. loginPost) prefix if its a POST request.
+                if (!empty($_POST)) {
+                    $method = $this->params['action'].'Post';
+                    $controller->$method($_POST);
+                } else {
+                    $method = $this->params['action'];
+                    $controller->$method();
+                }
+            } else {
+                View::renderErrorPage(404);
+            }
+        } else {
+            View::renderErrorPage(404);
+        }
+
+
+    }
+
+    /**
      * Searches match for url in registered routes
+     * Fills this->params variable
      * Delete '/test' if your project is placed at parent dir.
      * @return bool
      */

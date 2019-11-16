@@ -7,7 +7,7 @@ use PDO;
 /**
  * Class Db
  *
- *
+ * Contains PDO instance and methods for executing data from or to database.
  *
  * @package mvc\model
  */
@@ -21,7 +21,7 @@ class Db
     protected $db;
 
     /**
-     * Store value of created instance to ensure this class is singletone
+     * Store value of created instance to ensure this class
      *
      * @var instance|null
      */
@@ -46,13 +46,17 @@ class Db
             DB['password'],
             [PDO::ATTR_ERRMODE => (DEBUG) ? PDO::ERRMODE_EXCEPTION : PDO::ERRMODE_SILENT]
         );
-        var_dump(DB);
     }
 
     /**
-     * @param $sql
-     * @param array $params
-     * @return array
+     * Execute given sql query
+     *
+     * Prepare PDO query using query->bindValue method and executes it
+     *
+     * @param string   $sql SQL query for PDO
+     * @param array    $params Contain PDO placeholders and values for them i.e. ['plholder' => 'value', ..., ...]
+     *
+     * @return array   ['res' => 'bool value', 'query' => 'query result']
      */
     public function execQuery($sql, $params = [])
     {
@@ -65,6 +69,8 @@ class Db
     }
 
     /**
+     * Returns rows due to sql query with params.
+     *
      * @param $sql
      * @param array $params
      * @return mixed
@@ -76,6 +82,8 @@ class Db
     }
 
     /**
+     * Returns columns due to sql query with params.
+     *
      * @param $sql
      * @param array $params
      * @return mixed

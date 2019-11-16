@@ -43,12 +43,14 @@ return [
     'post_feedback' => [
         'controller' => 'main',
         'action' => 'postFeedback',
+        'validator' => 'PostFeedbackValidator',
         'name' => 'post_feedback',
         'perm' => 'all',
     ],
     'login' => [
         'controller' => 'user',
         'action' => 'login',
+        'validator' => 'LoginUserValidator',
         'name' => 'login',
         'perm' => 'guest',
     ],
@@ -56,6 +58,7 @@ return [
     'register' => [
         'controller' => 'user',
         'action' => 'register',
+        'validator' => 'RegisterUserValidator',
         'name' => 'register',
         'perm' => 'guest',
     ],
