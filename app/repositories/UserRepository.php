@@ -17,6 +17,21 @@ class UserRepository extends CoreRepository
         return $result;
     }
 
+
+    /**
+     *
+     *   $fields = [
+     *   'firstname' => ,
+     *   'surname' => ,
+     *   'email' => ,
+     *   'password' => ,
+     *   'gender' =>  ,
+     *   'birthday' => ,
+     *     ]
+     *
+     * @param array $fields
+     * @return mixed
+     */
     public function saveUser(array $fields)
     {
         $result = $this->startConditions()->saveUser($fields);

@@ -1,5 +1,7 @@
 <?php
 namespace mvc;
+use app\repositories\FeedbackRepository;
+use app\repositories\UserRepository;
 use mvc\view\View;
 use mvc\utils\UserInputHandler;
 /**
@@ -18,14 +20,16 @@ abstract class Controller
      */
     public $route;
     public $view;
-    public $model;
-    public $post_handler;
-    public $get_handler;
+    protected $userRepository;
+    protected $feedbackRepository;
+
 
     public function __construct($route)
     {
         $this->route = $route;
-        $this->view = new View($route);
+        $this->userRepository = new UserRepository();
+        $this->feedbackRepository = new FeedbackRepository();
+        $this->view = new View();
 
         if (!$this->userHasAccess()) {
             if ($_SESSION['user_group'] != 'autorized') {
@@ -52,12 +56,4 @@ abstract class Controller
         }
         return false;
     }
-
-//    private function loadModel($name)
-//    {
-//        $path = "{$this->route['app_name']}\models\\" . ucfirst(strtolower($name)) . 'Model';
-//        if (class_exists($path)) {
-//            return new $path();
-//        }
-//    }
 }

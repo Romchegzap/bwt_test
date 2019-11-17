@@ -97,13 +97,22 @@ if(!isset($_SESSION['user_group'])){
 ////dumper($router->params);
 //$router->run();
 
+
 //$db = new DB();
-
-$fields = [
-    'name'   => 'Ra',
-    'email'       => 'a3123aa@sdd.sd',
-    'message'     => 'Abbiasdasdas adsasdas adsdasd asdasdasd',
-
-];
-$rep = new \app\validators\PostFeedbackValidator($fields);
-var_dump($rep->validate());
+//
+//$fields = [
+//    'name'   => 'Ra',
+//    'email'       => 'a3123aa@sdd.sd',
+//    'message'     => 'Abbiasdasdas adsasdas adsdasd asdasdasd',
+//
+//];
+//$rep = new \app\validators\PostFeedbackValidator($fields);
+//var_dump($rep->validate());
+//
+//$rep = new \app\repositories\UserRepository();
+//var_dump($rep->getUserByEmail('3@33'));
+//$_SESSION['user_group'] = 'guest';
+echo 'User group:'.$_SESSION['user_group'].'<br/>';
+echo 'User name:'.$_SESSION['user_name'].'<br/>';
+$rep = new Router();
+$rep->run();

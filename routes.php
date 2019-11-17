@@ -34,40 +34,40 @@
 
 return [
     '' => [
-        'controller' => 'main',
-        'action' => 'index',
-        'name' => 'homepage',
-        'perm' => 'autorized',
+        'controller'    => 'main',
+        'action'        => 'index',
+        'name'          => 'homepage',
+        'perm'          => 'autorized',
     ],
 
     'post_feedback' => [
-        'controller' => 'main',
-        'action' => 'postFeedback',
-        'validator' => 'PostFeedbackValidator',
-        'name' => 'post_feedback',
-        'perm' => 'all',
+        'controller'    => 'main',
+        'action'        => 'postFeedback',
+        'validator'     => 'PostFeedbackValidator',
+        'name'          => 'post_feedback',
+        'perm'          => 'all',
     ],
     'login' => [
-        'controller' => 'user',
-        'action' => 'login',
-        'validator' => 'LoginUserValidator',
-        'name' => 'login',
-        'perm' => 'guest',
+        'controller'    => 'user',
+        'action'        => 'login',
+        'validator'     => 'LoginUserValidator',
+        'name'          => 'login',
+        'perm'          => 'guest',
     ],
 
     'register' => [
-        'controller' => 'user',
-        'action' => 'register',
-        'validator' => 'RegisterUserValidator',
-        'name' => 'register',
-        'perm' => 'guest',
+        'controller'    => 'user',
+        'action'        => 'register',
+        'validator'     => 'RegisterUserValidator',
+        'name'          => 'register',
+        'perm'          => 'guest',
     ],
 
     'logout' => [
-        'controller' => 'user',
-        'action' => 'logout',
-        'name' => 'logout',
-        'perm' => 'autorized',
+        'controller'    => 'user',
+        'action'        => 'logout',
+        'name'          => 'logout',
+        'perm'          => 'autorized',
     ],
 
 ];
