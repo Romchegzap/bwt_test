@@ -34,10 +34,6 @@ abstract class Controller
                 $this->view::redirectByName('homepage');
             }
         }
-
-        $this->model = $this->loadModel($route['controller']);
-        $this->post_handler = new UserInputHandler('POST');
-        $this->get_handler = new UserInputHandler('GET');
     }
 
     /**
