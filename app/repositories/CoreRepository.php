@@ -2,8 +2,10 @@
 
 namespace app\repositories;
 
-
-
+/**
+ * Class CoreRepository
+ * @package app\repositories
+ */
 abstract class CoreRepository
 {
     protected $model;

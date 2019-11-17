@@ -19,8 +19,13 @@ class UserController extends Controller
 
     public function login()
     {
+        if ($_SESSION['create_success'] == 'success') {
+            $this->validationErrors[] = 'Registration success. Log in please.';
+            $_SESSION['create_success'] = '';
+        }
         $viewFile = 'login';
         $this->view->render('Login page', $viewFile, $this->validationErrors, $this->oldData);
+
     }
 
     public function loginPost($post)
@@ -63,9 +68,8 @@ class UserController extends Controller
             unset($post['submit']);
             unset($post['passwordConfirmation']);
             if($this->userRepository->saveUser($post)){
-                $this->validationErrors[] = 'Registration success. Log in please.';
-                $this->login();
-                $this->validationErrors = [];
+                $_SESSION['create_success'] = 'success';
+                $this->view->redirectByName('login');
             }
         }
 

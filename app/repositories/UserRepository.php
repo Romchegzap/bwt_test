@@ -4,6 +4,14 @@ namespace app\repositories;
 
 use app\model\UserModel;
 
+/**
+ * Class UserRepository
+ *
+ * Contains methods for working with Users.
+ *
+ * @package app\repositories
+ *
+ */
 class UserRepository extends CoreRepository
 {
     public function getModelClass()
@@ -11,12 +19,15 @@ class UserRepository extends CoreRepository
         return UserModel::class;
     }
 
+     /**
+     * @param $email
+     * @return array
+     */
     public function getUserByEmail($email)
     {
         $result = $this->startConditions()->getUser('email', $email, '*');
         return $result;
     }
-
 
     /**
      *

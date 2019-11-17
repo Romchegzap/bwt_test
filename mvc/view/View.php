@@ -15,6 +15,14 @@ class View
         exit;
     }
 
+    /**
+     * Building html page.
+     *
+     * @param $title
+     * @param $viewFile
+     * @param array $errors
+     * @param array $oldData
+     */
     public function render($title, $viewFile, $errors = [], $oldData = [])
     {
         ob_start();
@@ -25,15 +33,6 @@ class View
         $titleAtPage = $title;
         require 'app/views/layouts/default.php';
 
-
-
-//        extract($context);
-//        if (file_exists($this->path)) {
-//            ob_start();
-//            require $this->path;
-//            $content = ob_get_clean();
-//            require "assets/layouts/{$layout}.php";
-//        }
     }
 
         /**

@@ -112,7 +112,8 @@ if(!isset($_SESSION['user_group'])){
 //$rep = new \app\repositories\UserRepository();
 //var_dump($rep->getUserByEmail('3@33'));
 //$_SESSION['user_group'] = 'guest';
-echo 'User group:'.$_SESSION['user_group'].'<br/>';
-echo 'User name:'.$_SESSION['user_name'].'<br/>';
+echo 'Session: user group - '.$_SESSION['user_group'].'<br/>';
+echo 'Session: user name - '.$_SESSION['user_name'].'<br/>';
+echo 'Session: create_success - '.$_SESSION['create_success'].'<br/>';
 $rep = new Router();
 $rep->run();
